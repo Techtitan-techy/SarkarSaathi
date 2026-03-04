@@ -178,14 +178,14 @@ The implementation uses TypeScript for Lambda functions, AWS CDK for infrastruct
     - Test callback scheduling
     - _Requirements: 8.3_
 
-- [ ] 8. Checkpoint - Verify multi-channel functionality
+- [x] 8. Checkpoint - Verify multi-channel functionality
   - Test voice, SMS, and IVR channels independently
   - Validate conversation state persistence across channels
   - Ensure cost controls are working (Free Tier limits)
   - Ensure all tests pass, ask the user if questions arise
 
 - [ ] 9. Implement application assistance and tracking system
-  - [ ] 9.1 Create application form handler
+  - [x] 9.1 Create application form handler
     - Parse scheme application requirements from OpenSearch
     - Generate dynamic form fields based on scheme
     - Validate user inputs against scheme criteria

@@ -818,6 +818,38 @@ export class SarkariSaathiStack extends cdk.Stack {
       },
     );
 
+    // Application Form Handler Lambda
+    const applicationFormHandlerFunction = new lambda.Function(
+      this,
+      "ApplicationFormHandlerFunction",
+      {
+        functionName: "SarkariSaathi-ApplicationFormHandler",
+        runtime: lambda.Runtime.PYTHON_3_11,
+        handler: "application_form_handler.lambda_handler",
+        code: lambda.Code.fromAsset("lambda", {
+          bundling: {
+            image: lambda.Runtime.PYTHON_3_11.bundlingImage,
+            command: [
+              "bash",
+              "-c",
+              "pip install -r requirements.txt -t /asset-output && cp -au . /asset-output",
+            ],
+          },
+        }),
+        timeout: cdk.Duration.seconds(30),
+        memorySize: 512,
+        environment: {
+          ...commonEnvVars,
+        },
+        role: lambdaExecutionRole,
+        vpc,
+        vpcSubnets: {
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+        },
+        securityGroups: [lambdaSecurityGroup],
+      },
+    );
+
     // Conversation Manager Lambda for Step Functions orchestration
     const conversationManagerFunction = new lambda.Function(
       this,
@@ -1150,12 +1182,56 @@ def lambda_handler(event, context):
       },
     );
 
+    // /applications/form endpoints for dynamic form generation and validation
+    const applicationFormResource = applicationsResource.addResource("form");
+
+    // /applications/form/generate - Generate form fields for a scheme
+    const formGenerateResource =
+      applicationFormResource.addResource("generate");
+    formGenerateResource.addMethod(
+      "POST",
+      new apigateway.LambdaIntegration(applicationFormHandlerFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
+    // /applications/form/validate - Validate form data
+    const formValidateResource =
+      applicationFormResource.addResource("validate");
+    formValidateResource.addMethod(
+      "POST",
+      new apigateway.LambdaIntegration(applicationFormHandlerFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
+    // /applications/form/save - Save partial or complete application
+    const formSaveResource = applicationFormResource.addResource("save");
+    formSaveResource.addMethod(
+      "POST",
+      new apigateway.LambdaIntegration(applicationFormHandlerFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
     // /applications/{applicationId} for specific application
     const applicationIdResource =
       applicationsResource.addResource("{applicationId}");
     applicationIdResource.addMethod(
       "GET",
-      new apigateway.LambdaIntegration(applicationHandlerFunction, {
+      new apigateway.LambdaIntegration(applicationFormHandlerFunction, {
         proxy: true,
       }),
       {
