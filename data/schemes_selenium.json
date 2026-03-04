@@ -1,0 +1,80 @@
+{
+  "schemes": [
+    {
+      "url": "https://www.myscheme.gov.in/schemes/post-dis",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/nps-tsep",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/rmewf-vocational-training",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/rmewf-disabled-child",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/pmsby",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/wos-c",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/sui",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/rmewf",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/sl",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    },
+    {
+      "url": "https://www.myscheme.gov.in/schemes/nos-swd",
+      "lastUpdated": "2026-02-28",
+      "name": "",
+      "benefits": [],
+      "eligibility_text": "Eligibility"
+    }
+  ],
+  "metadata": {
+    "totalSchemes": 10,
+    "scrapedAt": "2026-02-28 12:26:52",
+    "method": "Selenium WebDriver",
+    "source": "myScheme.gov.in"
+  }
+}

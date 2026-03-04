@@ -1,0 +1,19 @@
+# Web Scraping Dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# HTML parsing
+html5lib>=1.1
+
+# Optional: For JavaScript-heavy sites
+selenium>=4.15.0
+
+# Optional: For advanced scraping
+scrapy>=2.11.0
+
+# Data processing
+pandas>=2.1.0
+
+# Utilities
+python-dateutil>=2.8.2

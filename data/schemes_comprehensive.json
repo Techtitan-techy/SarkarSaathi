@@ -1,0 +1,99 @@
+{
+  "schemes": [
+    {
+      "id": "pm-kisan",
+      "name": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+      "nameHi": "प्रधानमंत्री किसान सम्मान निधि",
+      "nameTa": "பிரதம மந்திரி கிசான் சம்மான் நிதி",
+      "nameTe": "ప్రధాన మంత్రి కిసాన్ సమ్మాన్ నిధి",
+      "category": "Agriculture",
+      "type": "Central",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "launchedYear": 2019,
+      "description": "Direct income support of ₹6,000 per year to small and marginal farmer families across India",
+      "descriptionHi": "भारत भर के छोटे और सीमांत किसान परिवारों को प्रति वर्ष ₹6,000 की प्रत्यक्ष आय सहायता",
+      "descriptionTa": "இந்தியா முழுவதும் உள்ள சிறு மற்றும் குறு விவசாயக் குடும்பங்களுக்கு ஆண்டுக்கு ₹6,000 நேரடி வருமான ஆதரவு",
+      "descriptionTe": "భారతదేశం అంతటా చిన్న మరియు ఉపాంత రైతు కుటుంబాలకు సంవత్సరానికి ₹6,000 ప్రత్యక్ష ఆదాయ మద్దతు",
+      "benefits": [
+        "₹6,000 per year in 3 equal installments of ₹2,000",
+        "Direct Bank Transfer (DBT) - no middlemen",
+        "No application fee",
+        "Covers 10+ crore farmers nationwide"
+      ],
+      "benefitsHi": [
+        "प्रति वर्ष ₹6,000 तीन समान किस्तों में ₹2,000 प्रत्येक",
+        "प्रत्यक्ष बैंक हस्तांतरण (DBT) - कोई बिचौलिया नहीं",
+        "कोई आवेदन शुल्क नहीं",
+        "देशभर में 10+ करोड़ किसानों को कवर करता है"
+      ],
+      "eligibility": {
+        "minAge": 18,
+        "maxAge": 100,
+        "minIncome": 0,
+        "maxIncome": 500000,
+        "states": ["all"],
+        "occupation": ["farmer", "agriculture"],
+        "landOwnership": "Small and marginal farmers (up to 2 hectares)",
+        "categories": ["all"]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Bank Account Details",
+        "Land Ownership Documents",
+        "Mobile Number"
+      ],
+      "applicationProcess": "Online via PM-KISAN portal or through Common Service Centers (CSC)",
+      "applicationProcessHi": "PM-KISAN पोर्टल के माध्यम से ऑनलाइन या सामान्य सेवा केंद्र (CSC) के माध्यम से",
+      "officialWebsite": "https://pmkisan.gov.in/",
+      "lastUpdated": "2026-02-28"
+    },
+    {
+      "id": "ayushman-bharat",
+      "name": "Ayushman Bharat (PM-JAY)",
+      "nameHi": "आयुष्मान भारत (प्रधानमंत्री जन आरोग्य योजना)",
+      "nameTa": "ஆயுஷ்மான் பாரத் (பிரதம மந்திரி ஜன் ஆரோக்ய யோஜனா)",
+      "nameTe": "ఆయుష్మాన్ భారత్ (ప్రధాన మంత్రి జన్ ఆరోగ్య యోజన)",
+      "category": "Healthcare",
+      "type": "Central",
+      "ministry": "Ministry of Health & Family Welfare",
+      "launchedYear": 2018,
+      "description": "World's largest health insurance scheme providing ₹5 lakh coverage per family per year for secondary and tertiary care hospitalization",
+      "descriptionHi": "द्वितीयक और तृतीयक देखभाल अस्पताल में भर्ती के लिए प्रति परिवार प्रति वर्ष ₹5 लाख कवरेज प्रदान करने वाली विश्व की सबसे बड़ी स्वास्थ्य बीमा योजना",
+      "descriptionTa": "இரண்டாம் நிலை மற்றும் மூன்றாம் நிலை பராமரிப்பு மருத்துவமனையில் சேர்க்கைக்கு ஒரு குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் காப்பீடு வழங்கும் உலகின் மிகப்பெரிய சுகாதார காப்பீட்டு திட்டம்",
+      "descriptionTe": "ద్వితీయ మరియు తృతీయ సంరక్షణ ఆసుపత్రిలో చేరడానికి కుటుంబానికి సంవత్సరానికి ₹5 లక్షల కవరేజీని అందించే ప్రపంచంలోనే అతిపెద్ద ఆరోగ్య బీమా పథకం",
+      "benefits": [
+        "₹5 lakh health coverage per family per year",
+        "Cashless treatment at empanelled hospitals",
+        "Covers 1,400+ medical procedures",
+        "Pre and post-hospitalization expenses covered",
+        "All senior citizens (70+ years) eligible from 2024"
+      ],
+      "benefitsHi": [
+        "प्रति परिवार प्रति वर्ष ₹5 लाख स्वास्थ्य कवरेज",
+        "सूचीबद्ध अस्पतालों में कैशलेस उपचार",
+        "1,400+ चिकित्सा प्रक्रियाओं को कवर करता है",
+        "अस्पताल में भर्ती से पहले और बाद के खर्च कवर",
+        "सभी वरिष्ठ नागरिक (70+ वर्ष) 2024 से पात्र"
+      ],
+      "eligibility": {
+        "minAge": 0,
+        "maxAge": 100,
+        "minIncome": 0,
+        "maxIncome": 300000,
+        "states": ["all"],
+        "occupation": ["all"],
+        "categories": ["EWS", "BPL", "Senior Citizens 70+"]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Ration Card",
+        "Income Certificate (if applicable)",
+        "Age Proof for senior citizens"
+      ],
+      "applicationProcess": "Visit nearest Ayushman Mitra or Common Service Center with documents",
+      "applicationProcessHi": "दस्तावेजों के साथ निकटतम आयुष्मान मित्र या सामान्य सेवा केंद्र पर जाएं",
+      "officialWebsite": "https://pmjay.gov.in/",
+      "lastUpdated": "2026-02-28"
+    }
+  ]
+}

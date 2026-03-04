@@ -1,0 +1,312 @@
+{
+  "schemes": [
+    {
+      "schemeId": "pm-kisan-2025",
+      "name": {
+        "en": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+        "hi": "प्रधानमंत्री किसान सम्मान निधि",
+        "ta": "பிரதம மந்திரி கிசான் சம்மான் நிதி",
+        "te": "ప్రధాన మంత్రి కిసాన్ సమ్మాన్ నిధి"
+      },
+      "description": {
+        "en": "Direct income support providing ₹6,000 per year to all landholding farmer families in three equal installments of ₹2,000 each every four months",
+        "hi": "सभी भूमिधारक किसान परिवारों को हर चार महीने में ₹2,000 की तीन समान किस्तों में प्रति वर्ष ₹6,000 की प्रत्यक्ष आय सहायता",
+        "ta": "அனைத்து நில உடைமை விவசாயி குடும்பங்களுக்கும் ஒவ்வொரு நான்கு மாதங்களுக்கும் ₹2,000 மூன்று சம தவணைகளில் ஆண்டுக்கு ₹6,000 நேரடி வருமான ஆதரவு",
+        "te": "అన్ని భూస్వామ్య రైతు కుటుంబాలకు ప్రతి నాలుగు నెలలకు ₹2,000 మూడు సమాన వాయిదాలలో సంవత్సరానికి ₹6,000 ప్రత్యక్ష ఆదాయ మద్దతు"
+      },
+      "category": "Agriculture",
+      "state": "All India",
+      "launchingAuthority": "Ministry of Agriculture and Farmers Welfare",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 18, "max": 999 },
+        "incomeRange": { "min": 0, "max": 999999999 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["General", "OBC", "SC", "ST"],
+        "requiredOccupations": ["Farmer", "Agricultural Worker"],
+        "excludedOccupations": [],
+        "additionalCriteria": "Land-holding is the only eligibility criteria. Institutional landholders, income tax payers, and government employees are excluded."
+      },
+      "benefits": "₹6,000 per year via Direct Benefit Transfer (DBT) into Aadhaar-seeded bank accounts. 20th installment expected June-July 2025, benefiting approximately 9.8 crore farmers.",
+      "applicationProcess": "Apply online at pmkisan.gov.in or through Common Service Centers with land records and Aadhaar-linked bank account",
+      "requiredDocuments": [
+        "Aadhaar Card",
+        "Bank Account Details (Aadhaar-seeded)",
+        "Land Ownership Documents"
+      ],
+      "deadlines": [],
+      "contactInfo": "PM-KISAN Helpline: 155261 / 011-24300606, Email: pmkisan-ict@gov.in, Website: pmkisan.gov.in"
+    },
+    {
+      "schemeId": "ayushman-bharat-2025",
+      "name": {
+        "en": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (PM-JAY)",
+        "hi": "आयुष्मान भारत - प्रधानमंत्री जन आरोग्य योजना",
+        "ta": "ஆயுஷ்மான் பாரத் - பிரதம மந்திரி ஜன் ஆரோக்ய யோஜனா",
+        "te": "ఆయుష్మాన్ భారత్ - ప్రధాన మంత్రి జన్ ఆరోగ్య యోజన"
+      },
+      "description": {
+        "en": "World's largest health insurance scheme providing ₹5 lakh per family per year for secondary and tertiary care hospitalization. Recently extended to all senior citizens aged 70 years and above.",
+        "hi": "द्वितीयक और तृतीयक देखभाल अस्पताल में भर्ती के लिए प्रति परिवार प्रति वर्ष ₹5 लाख प्रदान करने वाली विश्व की सबसे बड़ी स्वास्थ्य बीमा योजना। हाल ही में 70 वर्ष और उससे अधिक आयु के सभी वरिष्ठ नागरिकों तक विस्तारित।",
+        "ta": "இரண்டாம் நிலை மற்றும் மூன்றாம் நிலை பராமரிப்பு மருத்துவமனையில் சேர்க்கைக்கு ஒரு குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் வழங்கும் உலகின் மிகப்பெரிய சுகாதார காப்பீட்டு திட்டம்",
+        "te": "ద్వితీయ మరియు తృతీయ సంరక్షణ ఆసుపత్రిలో చేరడానికి కుటుంబానికి సంవత్సరానికి ₹5 లక్షలు అందించే ప్రపంచంలోనే అతిపెద్ద ఆరోగ్య బీమా పథకం"
+      },
+      "category": "Healthcare",
+      "state": "All India",
+      "launchingAuthority": "National Health Authority (NHA)",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 0, "max": 999 },
+        "incomeRange": { "min": 0, "max": 999999999 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["General", "OBC", "SC", "ST"],
+        "requiredOccupations": [],
+        "excludedOccupations": [],
+        "additionalCriteria": "Families identified through SECC 2011 database. All senior citizens aged 70+ are now eligible regardless of income."
+      },
+      "benefits": "Health cover of ₹5 lakh per family per year for hospitalization, cashless and paperless treatment at empanelled hospitals, covers 1,949 procedures",
+      "applicationProcess": "Check eligibility at mera.pmjay.gov.in, get Ayushman Card from nearest Ayushman Mitra, hospital, or apply online through NHA website/Ayushman app",
+      "requiredDocuments": [
+        "Aadhaar Card",
+        "Ration Card",
+        "Mobile Number",
+        "Age Proof (for senior citizens)"
+      ],
+      "deadlines": [],
+      "contactInfo": "Ayushman Bharat Helpline: 14555, Email: support@pmjay.gov.in, Website: pmjay.gov.in"
+    }
+  ]
+}
+,
+    {
+      "schemeId": "pmay-urban-2025",
+      "name": {
+        "en": "Pradhan Mantri Awas Yojana - Urban 2.0 (PMAY-U)",
+        "hi": "प्रधानमंत्री आवास योजना - शहरी 2.0",
+        "ta": "பிரதம மந்திரி ஆவாஸ் யோஜனா - நகர்ப்புற 2.0",
+        "te": "ప్రధాన మంత్రి ఆవాస్ యోజన - పట్టణ 2.0"
+      },
+      "description": {
+        "en": "Housing for All scheme providing financial assistance for construction or purchase of houses in urban areas. Phase 2 aims to construct 1 crore houses by 2029. Deadline extended till December 2025.",
+        "hi": "शहरी क्षेत्रों में घरों के निर्माण या खरीद के लिए वित्तीय सहायता प्रदान करने वाली सभी के लिए आवास योजना। चरण 2 का लक्ष्य 2029 तक 1 करोड़ घर बनाना है। समय सीमा दिसंबर 2025 तक बढ़ाई गई।",
+        "ta": "நகர்ப்புற பகுதிகளில் வீடுகள் கட்டுவதற்கு அல்லது வாங்குவதற்கு நிதி உதவி வழங்கும் அனைவருக்கும் வீட்டுவசதி திட்டம்",
+        "te": "పట్టణ ప్రాంతాలలో ఇళ్ల నిర్మాణం లేదా కొనుగోలుకు ఆర్థిక సహాయం అందించే అందరికీ గృహ పథకం"
+      },
+      "category": "Housing",
+      "state": "All India",
+      "launchingAuthority": "Ministry of Housing and Urban Affairs",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 18, "max": 999 },
+        "incomeRange": { "min": 0, "max": 1800000 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["EWS", "LIG", "MIG", "General", "OBC", "SC", "ST"],
+        "requiredOccupations": [],
+        "excludedOccupations": [],
+        "additionalCriteria": "Family should not own a pucca house in any part of India. Annual household income: EWS (up to ₹3 lakh), LIG (₹3-6 lakh), MIG-I (₹6-12 lakh), MIG-II (₹12-18 lakh)"
+      },
+      "benefits": "Interest subsidy on home loans up to ₹2.67 lakh, direct financial assistance for house construction. EWS: ₹1.5 lakh subsidy, LIG: ₹2.67 lakh subsidy",
+      "applicationProcess": "Apply online at pmaymis.gov.in through Common Service Centers or directly. Aadhaar verification mandatory.",
+      "requiredDocuments": ["Aadhaar Card", "Income Certificate", "Bank Account Details", "Property Documents", "Caste Certificate (if applicable)"],
+      "deadlines": ["Registration deadline: December 2025"],
+      "contactInfo": "PMAY-U Helpline: 1800-11-6163, Email: pmay-urban@gov.in, Website: pmaymis.gov.in"
+    },
+    {
+      "schemeId": "pmay-gramin-2025",
+      "name": {
+        "en": "Pradhan Mantri Awas Yojana - Gramin (PMAY-G)",
+        "hi": "प्रधानमंत्री आवास योजना - ग्रामीण",
+        "ta": "பிரதம மந்திரி ஆவாஸ் யோஜனா - கிராமப்புறம்",
+        "te": "ప్రధాన మంత్రి ఆవాస్ యోజన - గ్రామీణ"
+      },
+      "description": {
+        "en": "Housing scheme for rural poor providing pucca houses with essential amenities. Phase 2 aims to construct 2 crore houses by 2029.",
+        "hi": "आवश्यक सुविधाओं के साथ पक्के मकान प्रदान करने वाली ग्रामीण गरीबों के लिए आवास योजना। चरण 2 का लक्ष्य 2029 तक 2 करोड़ घर बनाना है।",
+        "ta": "அத்தியாவசிய வசதிகளுடன் பக்கா வீடுகளை வழங்கும் கிராமப்புற ஏழைகளுக்கான வீட்டுவசதி திட்டம்",
+        "te": "అవసరమైన సౌకర్యాలతో పక్కా ఇళ్లను అందించే గ్రామీణ పేదల కోసం గృహ పథకం"
+      },
+      "category": "Housing",
+      "state": "All India",
+      "launchingAuthority": "Ministry of Rural Development",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 18, "max": 999 },
+        "incomeRange": { "min": 0, "max": 200000 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["BPL", "SC", "ST", "Minorities", "Homeless"],
+        "requiredOccupations": [],
+        "excludedOccupations": [],
+        "additionalCriteria": "Rural households without pucca house or living in kutcha/dilapidated dwelling"
+      },
+      "benefits": "₹1.20 lakh in plain areas, ₹1.30 lakh in hilly/difficult areas. Includes toilet assistance of ₹12,000, 90/95 days of unskilled wage employment under MGNREGA",
+      "applicationProcess": "Through Gram Panchayat or online via PMAY-G portal (pmayg.nic.in)",
+      "requiredDocuments": ["Aadhaar Card", "BPL Card", "Bank Account Details", "Caste Certificate (if applicable)"],
+      "deadlines": [],
+      "contactInfo": "PMAY-G Helpline: 1800-11-6446, Email: pmayg@gov.in, Website: pmayg.nic.in"
+    },
+    {
+      "schemeId": "mgnrega-2025",
+      "name": {
+        "en": "Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)",
+        "hi": "महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी अधिनियम",
+        "ta": "மகாத்மா காந்தி தேசிய கிராமப்புற வேலைவாய்ப்பு உத்தரவாத சட்டம்",
+        "te": "మహాత్మా గాంధీ జాతీయ గ్రామీణ ఉపాధి హామీ చట్టం"
+      },
+      "description": {
+        "en": "Legal guarantee of 100 days of wage employment per rural household each year for unskilled manual work. Wage rates increased by 2.33% to 7.48% for FY 2025-26.",
+        "hi": "अकुशल शारीरिक कार्य के लिए प्रति ग्रामीण परिवार प्रति वर्ष 100 दिनों के वेतन रोजगार की कानूनी गारंटी। वित्त वर्ष 2025-26 के लिए मजदूरी दरों में 2.33% से 7.48% की वृद्धि।",
+        "ta": "திறமையற்ற கைமுறை வேலைக்கு ஒவ்வொரு கிராமப்புற குடும்பத்திற்கும் ஆண்டுக்கு 100 நாட்கள் ஊதிய வேலைவாய்ப்பின் சட்ட உத்தரவாதம்",
+        "te": "నైపుణ్యం లేని మాన్యువల్ పనికి ప్రతి గ్రామీణ కుటుంబానికి సంవత్సరానికి 100 రోజుల వేతన ఉపాధి యొక్క చట్టపరమైన హామీ"
+      },
+      "category": "Employment",
+      "state": "All India",
+      "launchingAuthority": "Ministry of Rural Development",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 18, "max": 999 },
+        "incomeRange": { "min": 0, "max": 999999999 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["General", "OBC", "SC", "ST"],
+        "requiredOccupations": [],
+        "excludedOccupations": [],
+        "additionalCriteria": "Any Indian citizen above 18 years residing in rural area willing to do unskilled manual work"
+      },
+      "benefits": "100 days guaranteed wage employment per household per year. Wages range from ₹221 to ₹357 per day (state-wise, FY 2025-26). Unemployment allowance if work not provided within 15 days.",
+      "applicationProcess": "Apply at Gram Panchayat with photo and proof of residence to get Job Card",
+      "requiredDocuments": ["Aadhaar Card", "Address Proof", "Passport Size Photo", "Bank Account Details"],
+      "deadlines": [],
+      "contactInfo": "MGNREGA Helpline: 1800-345-22-44, Website: nrega.nic.in"
+    },
+    {
+      "schemeId": "sukanya-samriddhi-2025",
+      "name": {
+        "en": "Sukanya Samriddhi Yojana (SSY)",
+        "hi": "सुकन्या समृद्धि योजना",
+        "ta": "சுகன்யா சம்ரித்தி யோஜனா",
+        "te": "సుకన్య సమృద్ధి యోజన"
+      },
+      "description": {
+        "en": "Small deposit scheme for girl child under Beti Bachao Beti Padhao campaign with attractive 8.2% interest rate (Q2 FY 2025-26) and complete tax exemption.",
+        "hi": "बेटी बचाओ बेटी पढ़ाओ अभियान के तहत बालिकाओं के लिए आकर्षक 8.2% ब्याज दर (Q2 वित्त वर्ष 2025-26) और पूर्ण कर छूट के साथ छोटी जमा योजना।",
+        "ta": "பெட்டி பச்சாவ் பெட்டி படாவ் பிரச்சாரத்தின் கீழ் பெண் குழந்தைகளுக்கான சிறிய வைப்பு திட்டம் கவர்ச்சிகரமான 8.2% வட்டி விகிதம்",
+        "te": "బేటీ బచావో బేటీ పఢావో ప్రచారంలో భాగంగా బాలికల కోసం ఆకర్షణీయమైన 8.2% వడ్డీ రేటుతో చిన్న డిపాజిట్ పథకం"
+      },
+      "category": "Education",
+      "state": "All India",
+      "launchingAuthority": "Ministry of Finance",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 0, "max": 10 },
+        "incomeRange": { "min": 0, "max": 999999999 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["General", "OBC", "SC", "ST"],
+        "requiredOccupations": [],
+        "excludedOccupations": [],
+        "additionalCriteria": "Account can be opened for girl child below 10 years of age. Maximum 2 accounts per family."
+      },
+      "benefits": "8.2% interest rate per annum (compounded yearly, Q2 FY 2025-26). Tax deduction under Section 80C up to ₹1.5 lakh. Maturity after 21 years or marriage after 18 years. Minimum deposit ₹250, maximum ₹1.5 lakh per year.",
+      "applicationProcess": "Open account at any post office or authorized bank (SBI, PNB, BOI, etc.) with birth certificate and parent's documents",
+      "requiredDocuments": ["Birth Certificate of Girl Child", "Parent's Aadhaar Card", "Parent's PAN Card", "Address Proof", "Passport Size Photos"],
+      "deadlines": [],
+      "contactInfo": "Post Office Helpline: 1800-11-2011, Email: ssy@indiapost.gov.in"
+    },
+    {
+      "schemeId": "mudra-yojana-2025",
+      "name": {
+        "en": "Pradhan Mantri MUDRA Yojana (PMMY)",
+        "hi": "प्रधानमंत्री मुद्रा योजना",
+        "ta": "பிரதம மந்திரி முத்ரா யோஜனா",
+        "te": "ప్రధాన మంత్రి ముద్ర యోజన"
+      },
+      "description": {
+        "en": "Collateral-free micro-credit scheme providing loans up to ₹20 lakh (previously ₹10 lakh) to non-corporate, non-farm small/micro enterprises for income-generating activities.",
+        "hi": "आय-सृजन गतिविधियों के लिए गैर-कॉर्पोरेट, गैर-कृषि लघु/सूक्ष्म उद्यमों को ₹20 लाख तक (पहले ₹10 लाख) का ऋण प्रदान करने वाली संपार्श्विक-मुक्त सूक्ष्म-ऋण योजना।",
+        "ta": "வருமானம் ஈட்டும் செயல்பாடுகளுக்கு பெருநிறுவனம் அல்லாத, விவசாயம் அல்லாத சிறு/நுண்ணிய நிறுவனங்களுக்கு ₹20 லட்சம் வரை கடன் வழங்கும் பிணையம் இல்லாத நுண்கடன் திட்டம்",
+        "te": "ఆదాయ-ఉత్పత్తి కార్యకలాపాల కోసం కార్పొరేట్ కాని, వ్యవసాయేతర చిన్న/సూక్ష్మ సంస్థలకు ₹20 లక్షల వరకు రుణాలు అందించే తాకట్టు-రహిత సూక్ష్మ-రుణ పథకం"
+      },
+      "category": "Employment",
+      "state": "All India",
+      "launchingAuthority": "Ministry of Finance / SIDBI",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 18, "max": 999 },
+        "incomeRange": { "min": 0, "max": 999999999 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["General", "OBC", "SC", "ST"],
+        "requiredOccupations": ["Self-Employed", "Small Business Owner", "Entrepreneur", "Trader", "Service Provider"],
+        "excludedOccupations": [],
+        "additionalCriteria": "For non-corporate, non-farm income generating activities in manufacturing, trading, services, and allied agricultural activities (poultry, dairy, beekeeping)"
+      },
+      "benefits": "Collateral-free loans in 3 categories: Shishu (up to ₹50,000), Kishore (₹50,001 to ₹5 lakh), Tarun (₹5 lakh to ₹20 lakh). Credit guarantee coverage through CGTMSE/CGFMU.",
+      "applicationProcess": "Apply at any bank, NBFC, or MFI with business plan and required documents. No processing fee.",
+      "requiredDocuments": ["Aadhaar Card", "PAN Card", "Business Plan/Proposal", "Address Proof", "Bank Statements (if existing business)", "Caste Certificate (if applicable)"],
+      "deadlines": [],
+      "contactInfo": "MUDRA Helpline: 1800-180-1111, Email: mudra@sidbi.in, Website: udyamimitra.in"
+    },
+    {
+      "schemeId": "atal-pension-2025",
+      "name": {
+        "en": "Atal Pension Yojana (APY)",
+        "hi": "अटल पेंशन योजना",
+        "ta": "அடல் பென்ஷன் யோஜனா",
+        "te": "అటల్ పెన్షన్ యోజన"
+      },
+      "description": {
+        "en": "Government-guaranteed pension scheme for unorganized sector workers providing guaranteed monthly pension of ₹1,000 to ₹5,000 after 60 years. Over 7.60 crore enrollments as of March 2025.",
+        "hi": "असंगठित क्षेत्र के श्रमिकों के लिए सरकार-गारंटीड पेंशन योजना जो 60 वर्ष के बाद ₹1,000 से ₹5,000 की गारंटीड मासिक पेंशन प्रदान करती है। मार्च 2025 तक 7.60 करोड़ से अधिक नामांकन।",
+        "ta": "60 வயதுக்குப் பிறகு ₹1,000 முதல் ₹5,000 வரை உத்தரவாத மாதாந்திர ஓய்வூதியம் வழங்கும் அமைப்புசாரா துறை தொழிலாளர்களுக்கான அரசாங்க உத்தரவாத ஓய்வூதிய திட்டம்",
+        "te": "60 సంవత్సరాల తర్వాత ₹1,000 నుండి ₹5,000 వరకు హామీ ఇవ్వబడిన నెలవారీ పెన్షన్ అందించే అసంఘటిత రంగ కార్మికుల కోసం ప్రభుత్వ-హామీ పెన్షన్ పథకం"
+      },
+      "category": "Social Security",
+      "state": "All India",
+      "launchingAuthority": "Pension Fund Regulatory and Development Authority (PFRDA)",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 18, "max": 40 },
+        "incomeRange": { "min": 0, "max": 999999999 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["General", "OBC", "SC", "ST"],
+        "requiredOccupations": ["Daily Wage Laborer", "Domestic Help", "Small Vendor", "Farmer", "Gig Worker", "Self-Employed"],
+        "excludedOccupations": [],
+        "additionalCriteria": "Indian citizen aged 18-40 years with savings bank account. Should not be income tax payer (since October 1, 2022)."
+      },
+      "benefits": "Guaranteed monthly pension of ₹1,000, ₹2,000, ₹3,000, ₹4,000, or ₹5,000 after 60 years based on contribution. Contributions start as low as ₹42 per month for 18-year-old. Spouse continuation and nominee benefits available.",
+      "applicationProcess": "Apply at any bank branch or post office with savings account and Aadhaar. Auto-debit facility from savings account.",
+      "requiredDocuments": ["Aadhaar Card", "Bank Account Details", "Mobile Number"],
+      "deadlines": [],
+      "contactInfo": "APY Helpline: 1800-110-001, Email: apy@npscra.nsdl.co.in, Website: npscra.nsdl.co.in"
+    },
+    {
+      "schemeId": "pmegp-2025",
+      "name": {
+        "en": "Prime Minister's Employment Generation Programme (PMEGP)",
+        "hi": "प्रधानमंत्री रोजगार सृजन कार्यक्रम",
+        "ta": "பிரதம மந்திரி வேலைவாய்ப்பு உருவாக்க திட்டம்",
+        "te": "ప్రధాన మంత్రి ఉపాధి ఉత్పత్తి కార్యక్రమం"
+      },
+      "description": {
+        "en": "Credit-linked subsidy scheme operating since 2008 for setting up new micro-enterprises in manufacturing, trading, and service sectors. Provides 15% to 35% subsidy.",
+        "hi": "विनिर्माण, व्यापार और सेवा क्षेत्रों में नए सूक्ष्म उद्यम स्थापित करने के लिए 2008 से संचालित क्रेडिट-लिंक्ड सब्सिडी योजना। 15% से 35% सब्सिडी प्रदान करती है।",
+        "ta": "உற்பத்தி, வர்த்தகம் மற்றும் சேவை துறைகளில் புதிய நுண்ணிய நிறுவனங்களை அமைப்பதற்கான கடன்-இணைக்கப்பட்ட மானிய திட்டம்",
+        "te": "తయారీ, వాణిజ్యం మరియు సేవా రంగాలలో కొత్త సూక్ష్మ సంస్థలను ఏర్పాటు చేయడానికి క్రెడిట్-లింక్డ్ సబ్సిడీ పథకం"
+      },
+      "category": "Employment",
+      "state": "All India",
+      "launchingAuthority": "Ministry of Micro, Small and Medium Enterprises",
+      "eligibilityCriteria": {
+        "ageRange": { "min": 18, "max": 999 },
+        "incomeRange": { "min": 0, "max": 999999999 },
+        "allowedStates": ["All India"],
+        "allowedCategories": ["General", "OBC", "SC", "ST", "Women", "Physically Handicapped", "Ex-Servicemen"],
+        "requiredOccupations": [],
+        "excludedOccupations": [],
+        "additionalCriteria": "Minimum 8th pass for manufacturing projects above ₹10 lakh. No income limit. Should not have availed benefits under any other scheme."
+      },
+      "benefits": "15-35% subsidy on project cost: General category (15% urban, 25% rural), Special category SC/ST/OBC/Minorities/Women/Physically Handicapped/Ex-servicemen/Hill & Border areas (25% urban, 35% rural). Maximum project cost: ₹50 lakh (manufacturing), ₹20 lakh (service/trading).",
+      "applicationProcess": "Apply online at kviconline.gov.in/pmegpeportal with project report. Training provided through KVIC/KVIB.",
+      "requiredDocuments": ["Aadhaar Card", "Educational Certificates", "Caste Certificate (if applicable)", "Project Report", "Quotations for machinery/equipment"],
+      "deadlines": [],
+      "contactInfo": "PMEGP Helpline: 1800-3000-0034, Email: pmegp@kvic.org.in, Website: kviconline.gov.in"
+    }
+  ],
+  "metadata": {
+    "totalSchemes": 10,
+    "lastUpdated": "2026-03-01",
+    "source": "Official Government Portals, myScheme.gov.in, News sources (2025 data)",
+    "dataQuality": "Real 2025 data with current interest rates, wage rates, and eligibility criteria",
+    "categories": ["Agriculture", "Healthcare", "Housing", "Employment", "Education", "Social Security"],
+    "coverage": "All India schemes with state-specific variations where applicable"
+  }
+}

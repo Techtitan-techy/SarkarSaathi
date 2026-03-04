@@ -1,0 +1,200 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "WelcomeMessage",
+  "Metadata": {
+    "entryPointPosition": { "x": 20, "y": 20 },
+    "snapToGrid": false,
+    "ActionMetadata": {
+      "WelcomeMessage": { "position": { "x": 200, "y": 20 } },
+      "GetDtmfInput": { "position": { "x": 400, "y": 20 } },
+      "ProcessDtmf": { "position": { "x": 600, "y": 20 } },
+      "EndCall": { "position": { "x": 800, "y": 20 } }
+    }
+  },
+  "Actions": [
+    {
+      "Identifier": "WelcomeMessage",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Welcome to SarkariSaathi"
+      },
+      "Transitions": {
+        "NextAction": "InvokeWelcomeLambda",
+        "Errors": [
+          { "NextAction": "ErrorHandler", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "InvokeWelcomeLambda",
+      "Type": "InvokeLambdaFunction",
+      "Parameters": {
+        "LambdaFunctionARN": "${IVR_HANDLER_LAMBDA_ARN}",
+        "InvocationTimeLimitSeconds": "8",
+        "LambdaInvocationAttributes": {
+          "action": "handleIncomingCall"
+        },
+        "ResponseValidation": {
+          "ResponseType": "JSON"
+        }
+      },
+      "Transitions": {
+        "NextAction": "PlayWelcomeMessage",
+        "Errors": [
+          { "NextAction": "ErrorHandler", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "PlayWelcomeMessage",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "$.External.message"
+      },
+      "Transitions": {
+        "NextAction": "GetDtmfInput"
+      }
+    },
+    {
+      "Identifier": "GetDtmfInput",
+      "Type": "GetParticipantInput",
+      "Parameters": {
+        "InputTimeLimitSeconds": "10",
+        "InputValidation": {
+          "CustomValidation": {
+            "MaximumLength": "1"
+          }
+        },
+        "StoredCustomerInput": "dtmfInput"
+      },
+      "Transitions": {
+        "NextAction": "ProcessDtmf",
+        "Errors": [
+          {
+            "NextAction": "TimeoutHandler",
+            "ErrorType": "InputTimeLimitExceeded"
+          },
+          { "NextAction": "ErrorHandler", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "ProcessDtmf",
+      "Type": "InvokeLambdaFunction",
+      "Parameters": {
+        "LambdaFunctionARN": "${IVR_HANDLER_LAMBDA_ARN}",
+        "InvocationTimeLimitSeconds": "8",
+        "LambdaInvocationAttributes": {
+          "action": "processDtmfInput",
+          "dtmfInput": "$.StoredCustomerInput"
+        }
+      },
+      "Transitions": {
+        "NextAction": "CheckShouldEnd",
+        "Errors": [
+          { "NextAction": "ErrorHandler", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "CheckShouldEnd",
+      "Type": "Compare",
+      "Parameters": {
+        "ComparisonValue": "$.External.shouldEnd"
+      },
+      "Transitions": {
+        "NextAction": "PlayResponse",
+        "Conditions": [
+          {
+            "NextAction": "EndCall",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["true"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "PlayResponse",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "$.External.message"
+      },
+      "Transitions": {
+        "NextAction": "CheckNextAction"
+      }
+    },
+    {
+      "Identifier": "CheckNextAction",
+      "Type": "Compare",
+      "Parameters": {
+        "ComparisonValue": "$.External.nextAction"
+      },
+      "Transitions": {
+        "NextAction": "GetDtmfInput",
+        "Conditions": [
+          {
+            "NextAction": "GetDtmfInput",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["waitForDtmf"]
+            }
+          },
+          {
+            "NextAction": "InvokeWelcomeLambda",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["returnToMenu"]
+            }
+          },
+          {
+            "NextAction": "TransferToAgent",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["transferToAgent"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "TransferToAgent",
+      "Type": "TransferParticipantToQueue",
+      "Parameters": {
+        "QueueId": "${AGENT_QUEUE_ARN}"
+      },
+      "Transitions": {
+        "NextAction": "EndCall",
+        "Errors": [
+          { "NextAction": "ErrorHandler", "ErrorType": "NoMatchingError" }
+        ]
+      }
+    },
+    {
+      "Identifier": "TimeoutHandler",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "I didn't receive any input. Returning to main menu."
+      },
+      "Transitions": {
+        "NextAction": "InvokeWelcomeLambda"
+      }
+    },
+    {
+      "Identifier": "ErrorHandler",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "We're experiencing technical difficulties. Please try again later."
+      },
+      "Transitions": {
+        "NextAction": "EndCall"
+      }
+    },
+    {
+      "Identifier": "EndCall",
+      "Type": "DisconnectParticipant",
+      "Parameters": {}
+    }
+  ]
+}

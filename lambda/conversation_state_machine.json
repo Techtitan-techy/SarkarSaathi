@@ -1,0 +1,354 @@
+{
+  "Comment": "SarkariSaathi Conversational AI State Machine",
+  "StartAt": "DetermineState",
+  "States": {
+    "DetermineState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ConversationManagerFunction}",
+        "Payload": {
+          "action": "determineState",
+          "sessionId.$": "$.sessionId",
+          "userMessage.$": "$.userMessage",
+          "language.$": "$.language"
+        }
+      },
+      "ResultPath": "$.stateResult",
+      "Next": "RouteToState",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ],
+      "TimeoutSeconds": 30
+    },
+    "RouteToState": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.stateResult.Payload.nextState",
+          "StringEquals": "Welcome",
+          "Next": "WelcomeState"
+        },
+        {
+          "Variable": "$.stateResult.Payload.nextState",
+          "StringEquals": "ProfileCollection",
+          "Next": "ProfileCollectionState"
+        },
+        {
+          "Variable": "$.stateResult.Payload.nextState",
+          "StringEquals": "SchemeDiscovery",
+          "Next": "SchemeDiscoveryState"
+        },
+        {
+          "Variable": "$.stateResult.Payload.nextState",
+          "StringEquals": "EligibilityCheck",
+          "Next": "EligibilityCheckState"
+        },
+        {
+          "Variable": "$.stateResult.Payload.nextState",
+          "StringEquals": "ApplicationGuidance",
+          "Next": "ApplicationGuidanceState"
+        }
+      ],
+      "Default": "WelcomeState"
+    },
+    "WelcomeState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ConversationManagerFunction}",
+        "Payload": {
+          "action": "handleWelcome",
+          "sessionId.$": "$.sessionId",
+          "userMessage.$": "$.userMessage",
+          "language.$": "$.language",
+          "context.$": "$.stateResult.Payload.context"
+        }
+      },
+      "ResultPath": "$.response",
+      "Next": "SaveConversationState",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ],
+      "TimeoutSeconds": 30
+    },
+    "ProfileCollectionState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ConversationManagerFunction}",
+        "Payload": {
+          "action": "handleProfileCollection",
+          "sessionId.$": "$.sessionId",
+          "userMessage.$": "$.userMessage",
+          "language.$": "$.language",
+          "context.$": "$.stateResult.Payload.context"
+        }
+      },
+      "ResultPath": "$.response",
+      "Next": "SaveConversationState",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ],
+      "TimeoutSeconds": 30
+    },
+    "SchemeDiscoveryState": {
+      "Type": "Parallel",
+      "Branches": [
+        {
+          "StartAt": "InvokeEligibilityMatching",
+          "States": {
+            "InvokeEligibilityMatching": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "Parameters": {
+                "FunctionName": "${EligibilityMatchingFunction}",
+                "Payload": {
+                  "query.$": "$.userMessage",
+                  "userProfile.$": "$.stateResult.Payload.context.userProfile",
+                  "topK": 5
+                }
+              },
+              "End": true
+            }
+          }
+        }
+      ],
+      "ResultPath": "$.eligibilityResults",
+      "Next": "GenerateSchemeResponse",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ]
+    },
+    "GenerateSchemeResponse": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ConversationManagerFunction}",
+        "Payload": {
+          "action": "handleSchemeDiscovery",
+          "sessionId.$": "$.sessionId",
+          "userMessage.$": "$.userMessage",
+          "language.$": "$.language",
+          "context.$": "$.stateResult.Payload.context",
+          "schemes.$": "$.eligibilityResults[0].Payload.body"
+        }
+      },
+      "ResultPath": "$.response",
+      "Next": "SaveConversationState",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ],
+      "TimeoutSeconds": 30
+    },
+    "EligibilityCheckState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ConversationManagerFunction}",
+        "Payload": {
+          "action": "handleEligibilityCheck",
+          "sessionId.$": "$.sessionId",
+          "userMessage.$": "$.userMessage",
+          "language.$": "$.language",
+          "context.$": "$.stateResult.Payload.context"
+        }
+      },
+      "ResultPath": "$.response",
+      "Next": "SaveConversationState",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ],
+      "TimeoutSeconds": 30
+    },
+    "ApplicationGuidanceState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ConversationManagerFunction}",
+        "Payload": {
+          "action": "handleApplicationGuidance",
+          "sessionId.$": "$.sessionId",
+          "userMessage.$": "$.userMessage",
+          "language.$": "$.language",
+          "context.$": "$.stateResult.Payload.context"
+        }
+      },
+      "ResultPath": "$.response",
+      "Next": "SaveConversationState",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ],
+      "TimeoutSeconds": 30
+    },
+    "SaveConversationState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "${SessionsTable}",
+        "Item": {
+          "sessionId": {
+            "S.$": "$.sessionId"
+          },
+          "currentState": {
+            "S.$": "$.response.Payload.nextState"
+          },
+          "context": {
+            "S.$": "States.JsonToString($.response.Payload.context)"
+          },
+          "lastMessage": {
+            "S.$": "$.userMessage"
+          },
+          "lastResponse": {
+            "S.$": "$.response.Payload.response"
+          },
+          "language": {
+            "S.$": "$.language"
+          },
+          "updatedAt": {
+            "S.$": "$$.State.EnteredTime"
+          },
+          "ttl": {
+            "N.$": "States.Format('{}', States.MathAdd(States.StringToJson($$.State.EnteredTime), 86400))"
+          }
+        }
+      },
+      "ResultPath": "$.saveResult",
+      "Next": "CheckContinuation",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "ErrorHandler"
+        }
+      ]
+    },
+    "CheckContinuation": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.response.Payload.shouldContinue",
+          "BooleanEquals": true,
+          "Next": "Success"
+        }
+      ],
+      "Default": "Success"
+    },
+    "ErrorHandler": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ConversationManagerFunction}",
+        "Payload": {
+          "action": "handleError",
+          "sessionId.$": "$.sessionId",
+          "error.$": "$.error",
+          "language.$": "$.language"
+        }
+      },
+      "ResultPath": "$.errorResponse",
+      "Next": "Fail",
+      "TimeoutSeconds": 10
+    },
+    "Fail": {
+      "Type": "Fail",
+      "Cause": "Conversation processing failed",
+      "Error": "ConversationError"
+    },
+    "Success": {
+      "Type": "Pass",
+      "Parameters": {
+        "statusCode": 200,
+        "sessionId.$": "$.sessionId",
+        "response.$": "$.response.Payload.response",
+        "nextState.$": "$.response.Payload.nextState",
+        "language.$": "$.language"
+      },
+      "End": true
+    }
+  }
+}
