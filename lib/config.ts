@@ -22,12 +22,8 @@ export interface SarkariSaathiConfig {
   // KMS
   kmsKeyId: string;
 
-  // API Configuration
-  bhashiniApiKey?: string;
-  bhashiniApiUrl?: string;
-
   // Feature Flags
-  enableBhashini: boolean;
+  enableAWSTranslate: boolean;
   enableOfflineMode: boolean;
   enableDebugLogging: boolean;
 
@@ -56,11 +52,7 @@ export function loadConfig(): SarkariSaathiConfig {
 
     kmsKeyId: process.env.KMS_KEY_ID || "",
 
-    bhashiniApiKey: process.env.BHASHINI_API_KEY,
-    bhashiniApiUrl:
-      process.env.BHASHINI_API_URL || "https://dhruva-api.bhashini.gov.in",
-
-    enableBhashini: process.env.ENABLE_BHASHINI === "true",
+    enableAWSTranslate: process.env.ENABLE_AWS_TRANSLATE === "true",
     enableOfflineMode: process.env.ENABLE_OFFLINE_MODE === "true",
     enableDebugLogging: process.env.ENABLE_DEBUG_LOGGING === "true",
 

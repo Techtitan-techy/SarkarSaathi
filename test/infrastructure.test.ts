@@ -174,16 +174,14 @@ describe("SarkariSaathi Infrastructure", () => {
   });
 
   describe("Systems Manager Parameters", () => {
-    test("should create Bhashini API key parameter", () => {
+    test("should create AWS Translate feature flag parameter", () => {
       template.hasResourceProperties("AWS::SSM::Parameter", {
-        Name: "/sarkari-saathi/bhashini/api-key",
+        Name: "/sarkari-saathi/features/enable-aws-translate",
         Type: "String",
       });
     });
 
     test("should create feature flag parameters", () => {
-      template.hasResourceProperties("AWS::SSM::Parameter", {
-        Name: "/sarkari-saathi/features/enable-bhashini",
       });
     });
   });

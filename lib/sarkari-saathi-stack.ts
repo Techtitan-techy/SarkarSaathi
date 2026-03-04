@@ -97,34 +97,11 @@ export class SarkariSaathiStack extends cdk.Stack {
     // AWS Systems Manager Parameter Store for Secrets
     // ========================================
 
-    // Store Bhashini API configuration
-    const bhashiniApiKeyParam = new ssm.StringParameter(
-      this,
-      "BhashiniApiKey",
-      {
-        parameterName: "/sarkari-saathi/bhashini/api-key",
-        stringValue: "PLACEHOLDER_UPDATE_AFTER_DEPLOYMENT",
-        description: "Bhashini API key for multilingual support",
-        tier: ssm.ParameterTier.STANDARD,
-      },
-    );
-
-    const bhashiniApiUrlParam = new ssm.StringParameter(
-      this,
-      "BhashiniApiUrl",
-      {
-        parameterName: "/sarkari-saathi/bhashini/api-url",
-        stringValue: "https://dhruva-api.bhashini.gov.in",
-        description: "Bhashini API endpoint URL",
-        tier: ssm.ParameterTier.STANDARD,
-      },
-    );
-
     // Feature flags
-    new ssm.StringParameter(this, "EnableBhashiniParam", {
-      parameterName: "/sarkari-saathi/features/enable-bhashini",
-      stringValue: "false",
-      description: "Enable Bhashini API for regional languages",
+    new ssm.StringParameter(this, "EnableAWSTranslateParam", {
+      parameterName: "/sarkari-saathi/features/enable-aws-translate",
+      stringValue: "true",
+      description: "Enable AWS Translate for multilingual support",
       tier: ssm.ParameterTier.STANDARD,
     });
 
@@ -352,6 +329,7 @@ export class SarkariSaathiStack extends cdk.Stack {
       capacity: {
         dataNodes: 1,
         dataNodeInstanceType: "t3.small.search",
+        multiAzWithStandbyEnabled: false,
       },
       ebs: {
         volumeSize: 10,
@@ -489,6 +467,18 @@ export class SarkariSaathiStack extends cdk.Stack {
       }),
     );
 
+    // Grant AWS Translate and Comprehend permissions for multilingual support
+    lambdaExecutionRole.addToPolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+          "translate:TranslateText",
+          "comprehend:DetectDominantLanguage",
+        ],
+        resources: ["*"],
+      }),
+    );
+
     // ========================================
     // Environment Variables for Lambda
     // ========================================
@@ -504,12 +494,11 @@ export class SarkariSaathiStack extends cdk.Stack {
       TTS_CACHE_BUCKET: ttsCacheBucket.bucketName,
       KMS_KEY_ID: dataEncryptionKey.keyId,
       AWS_REGION: this.region,
-      BHASHINI_API_KEY_PARAM: bhashiniApiKeyParam.parameterName,
-      BHASHINI_API_URL_PARAM: bhashiniApiUrlParam.parameterName,
       OPENSEARCH_ENDPOINT: openSearchDomain.domainEndpoint,
       OPENSEARCH_DOMAIN_ARN: openSearchDomain.domainArn,
       PINPOINT_APP_ID: pinpointApp.ref,
       SMS_STATUS_TOPIC_ARN: smsStatusTopic.topicArn,
+      ENABLE_AWS_TRANSLATE: "true",
     };
 
     // ========================================
@@ -722,6 +711,38 @@ export class SarkariSaathiStack extends cdk.Stack {
       },
     );
 
+    // Conversation Manager Lambda for Step Functions orchestration
+    const conversationManagerFunction = new lambda.Function(
+      this,
+      "ConversationManagerFunction",
+      {
+        functionName: "SarkariSaathi-ConversationManager",
+        runtime: lambda.Runtime.PYTHON_3_11,
+        handler: "conversation_manager.lambda_handler",
+        code: lambda.Code.fromAsset("lambda", {
+          bundling: {
+            image: lambda.Runtime.PYTHON_3_11.bundlingImage,
+            command: [
+              "bash",
+              "-c",
+              "pip install -r requirements.txt -t /asset-output && cp -au . /asset-output",
+            ],
+          },
+        }),
+        timeout: cdk.Duration.seconds(60),
+        memorySize: 1024,
+        environment: {
+          ...commonEnvVars,
+        },
+        role: lambdaExecutionRole,
+        vpc,
+        vpcSubnets: {
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+        },
+        securityGroups: [lambdaSecurityGroup],
+      },
+    );
+
     // SMS Handler Lambda
     const smsHandlerFunction = new lambda.Function(this, "SmsHandlerFunction", {
       functionName: "SarkariSaathi-SmsHandler",
@@ -850,14 +871,14 @@ export class SarkariSaathiStack extends cdk.Stack {
       },
     );
 
-    // Conversation Manager Lambda for Step Functions orchestration
-    const conversationManagerFunction = new lambda.Function(
+    // Document Checklist Generator Lambda
+    const documentChecklistGeneratorFunction = new lambda.Function(
       this,
-      "ConversationManagerFunction",
+      "DocumentChecklistGeneratorFunction",
       {
-        functionName: "SarkariSaathi-ConversationManager",
+        functionName: "SarkariSaathi-DocumentChecklistGenerator",
         runtime: lambda.Runtime.PYTHON_3_11,
-        handler: "conversation_manager.lambda_handler",
+        handler: "document_checklist_generator.lambda_handler",
         code: lambda.Code.fromAsset("lambda", {
           bundling: {
             image: lambda.Runtime.PYTHON_3_11.bundlingImage,
@@ -868,10 +889,44 @@ export class SarkariSaathiStack extends cdk.Stack {
             ],
           },
         }),
-        timeout: cdk.Duration.seconds(60),
-        memorySize: 1024,
+        timeout: cdk.Duration.seconds(30),
+        memorySize: 512,
         environment: {
           ...commonEnvVars,
+        },
+        role: lambdaExecutionRole,
+        vpc,
+        vpcSubnets: {
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+        },
+        securityGroups: [lambdaSecurityGroup],
+      },
+    );
+
+    // Application Submission Handler Lambda
+    const applicationSubmissionHandlerFunction = new lambda.Function(
+      this,
+      "ApplicationSubmissionHandlerFunction",
+      {
+        functionName: "SarkariSaathi-ApplicationSubmissionHandler",
+        runtime: lambda.Runtime.PYTHON_3_11,
+        handler: "application_submission_handler.lambda_handler",
+        code: lambda.Code.fromAsset("lambda", {
+          bundling: {
+            image: lambda.Runtime.PYTHON_3_11.bundlingImage,
+            command: [
+              "bash",
+              "-c",
+              "pip install -r requirements.txt -t /asset-output && cp -au . /asset-output",
+            ],
+          },
+        }),
+        timeout: cdk.Duration.seconds(30),
+        memorySize: 512,
+        environment: {
+          ...commonEnvVars,
+          PINPOINT_PROJECT_ID: pinpointApp.attrId,
+          EVENT_BUS_NAME: "default",
         },
         role: lambdaExecutionRole,
         vpc,
@@ -1242,6 +1297,106 @@ def lambda_handler(event, context):
     applicationIdResource.addMethod(
       "PUT",
       new apigateway.LambdaIntegration(applicationHandlerFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
+    // /applications/checklist endpoints for document checklist management
+    const checklistResource = applicationsResource.addResource("checklist");
+
+    // /applications/checklist/generate - Generate personalized document checklist
+    const checklistGenerateResource = checklistResource.addResource("generate");
+    checklistGenerateResource.addMethod(
+      "POST",
+      new apigateway.LambdaIntegration(documentChecklistGeneratorFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
+    // /applications/{applicationId}/checklist - Get checklist for existing application
+    const applicationChecklistResource =
+      applicationIdResource.addResource("checklist");
+    applicationChecklistResource.addMethod(
+      "GET",
+      new apigateway.LambdaIntegration(documentChecklistGeneratorFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+      },
+    );
+
+    // /applications/{applicationId}/checklist/update - Update document upload status
+    const checklistUpdateResource =
+      applicationChecklistResource.addResource("update");
+    checklistUpdateResource.addMethod(
+      "POST",
+      new apigateway.LambdaIntegration(documentChecklistGeneratorFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
+    // /applications/submit endpoints for application submission workflow
+    const submitResource = applicationsResource.addResource("submit");
+
+    // /applications/submit/review - Review application before submission
+    const submitReviewResource = submitResource.addResource("review");
+    submitReviewResource.addMethod(
+      "POST",
+      new apigateway.LambdaIntegration(applicationSubmissionHandlerFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
+    // /applications/submit - Submit application
+    submitResource.addMethod(
+      "POST",
+      new apigateway.LambdaIntegration(applicationSubmissionHandlerFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+        requestValidator: requestValidator,
+      },
+    );
+
+    // /applications/track endpoints for tracking applications
+    const trackResource = applicationsResource.addResource("track");
+
+    // /applications/track/{trackingNumber} - Track by tracking number
+    const trackByNumberResource = trackResource.addResource("{trackingNumber}");
+    trackByNumberResource.addMethod(
+      "GET",
+      new apigateway.LambdaIntegration(applicationSubmissionHandlerFunction, {
+        proxy: true,
+      }),
+      {
+        apiKeyRequired: true,
+      },
+    );
+
+    // /applications/{applicationId}/status - Update application status
+    const applicationStatusResource =
+      applicationIdResource.addResource("status");
+    applicationStatusResource.addMethod(
+      "PUT",
+      new apigateway.LambdaIntegration(applicationSubmissionHandlerFunction, {
         proxy: true,
       }),
       {
@@ -1885,11 +2040,6 @@ def lambda_handler(event, context):
     new cdk.CfnOutput(this, "VPCId", {
       value: vpc.vpcId,
       description: "VPC ID for secure communication",
-    });
-
-    new cdk.CfnOutput(this, "BhashiniApiKeyParameter", {
-      value: bhashiniApiKeyParam.parameterName,
-      description: "SSM Parameter name for Bhashini API key",
     });
 
     new cdk.CfnOutput(this, "OpenSearchEndpoint", {

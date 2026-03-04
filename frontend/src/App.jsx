@@ -19,7 +19,7 @@ import {
 
 function App() {
   const [schemes, setSchemes] = useState([]);
-  const [allSchemes, setAllSchemes] = useState(mockSchemes);
+  const [allSchemes] = useState(mockSchemes);
   const [messages, setMessages] = useState([]);
   const [isListening, setIsListening] = useState(false);
   const [sessionId, setSessionId] = useState(null);
@@ -121,11 +121,11 @@ function App() {
         } catch (apiError) {
           console.error("API error, falling back to mock:", apiError);
           // Fall back to mock data
-          useMockResponse(transcript, updatedUserInfo, language);
+          handleMockResponse(transcript, updatedUserInfo, language);
         }
       } else {
         // Use mock data
-        useMockResponse(transcript, updatedUserInfo, language);
+        handleMockResponse(transcript, updatedUserInfo, language);
       }
     } catch (error) {
       console.error("Error handling voice input:", error);
@@ -142,7 +142,7 @@ function App() {
     }
   };
 
-  const useMockResponse = (transcript, updatedUserInfo, language) => {
+  const handleMockResponse = (transcript, updatedUserInfo, language) => {
     // Generate intelligent response using mock service
     setTimeout(() => {
       const response = generateResponse(transcript, updatedUserInfo, language);
@@ -398,7 +398,7 @@ function App() {
         </p>
         <p style={{ fontSize: "0.9rem", opacity: 0.9 }}>
           {backendAvailable
-            ? "Powered by AWS Lambda, Bedrock Claude 3.5 Sonnet, OpenSearch, DynamoDB, Transcribe, Polly & Bhashini"
+            ? "Powered by AWS Lambda, Bedrock Claude 3.5 Sonnet, OpenSearch, DynamoDB, Transcribe, Polly, Translate & Comprehend"
             : "Demo Mode - Deploy backend to enable full AI features"}
         </p>
         <p style={{ fontSize: "0.85rem", marginTop: "0.5rem", opacity: 0.8 }}>

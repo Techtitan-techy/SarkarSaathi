@@ -148,7 +148,7 @@ See [PROGRESS.md](./PROGRESS.md) for detailed implementation tracking.
 - **Amazon Polly** - Text-to-speech
 - **Amazon OpenSearch** - Vector store for RAG
 - **Amazon Titan Embeddings** - Document vectorization
-- **Bhashini API** - 22+ Indian language support
+- **Amazon Translate** - 10+ Indian language support (Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Kannada, Malayalam, Punjabi, Urdu)
 
 ### Data & Storage
 

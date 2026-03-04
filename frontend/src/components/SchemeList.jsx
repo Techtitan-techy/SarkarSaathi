@@ -4,11 +4,6 @@ import FilterPanel from "./FilterPanel";
 
 const SchemeList = ({ schemes }) => {
   const [filteredSchemes, setFilteredSchemes] = useState(schemes);
-  const [filters, setFilters] = useState({
-    category: "all",
-    state: "all",
-    scope: "all",
-  });
 
   useEffect(() => {
     setFilteredSchemes(schemes);
@@ -19,8 +14,6 @@ const SchemeList = ({ schemes }) => {
   }
 
   const handleFilterChange = (newFilters) => {
-    setFilters(newFilters);
-
     let filtered = [...schemes];
 
     // Filter by category
