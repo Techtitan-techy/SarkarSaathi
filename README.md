@@ -195,10 +195,36 @@ See [PROGRESS.md](./PROGRESS.md) for detailed implementation tracking.
 
 ## 📖 Documentation
 
-- [Requirements Document](./.kiro/specs/sarkari-saathi/requirements.md)
-- [Design Document](./.kiro/specs/sarkari-saathi/design.md)
-- [Implementation Plan](./.kiro/specs/sarkari-saathi/tasks.md)
-- [Progress Tracker](./PROGRESS.md)
+### Getting Started
+
+- [Quick Start Guide](README.md#quick-start) - Get up and running quickly
+- [Project Structure](PROJECT_STRUCTURE.md) - Understand the codebase
+- [AWS Translate Migration](docs/AWS_TRANSLATE_MIGRATION.md) - Complete migration guide
+
+### Setup Guides
+
+- [AWS Complete Setup](docs/setup/AWS_COMPLETE_SETUP_GUIDE.md) - From account creation to deployment
+- [Amazon Connect Setup](docs/setup/AMAZON_CONNECT_SETUP.md) - IVR configuration
+- [Claude/Bedrock Setup](docs/setup/CLAUDE_SETUP_COMPLETE.md) - AI model configuration
+- [Cost Control](docs/setup/BEDROCK_COST_CONTROL.md) - Optimize AWS costs
+
+### User Guides
+
+- [Run Application](docs/guides/RUN_APPLICATION.md) - How to run the app
+- [Quick Reference](docs/guides/QUICK_REFERENCE.md) - Common commands
+- [Error Handling](docs/guides/ERROR_HANDLING_GUIDE.md) - Troubleshooting
+
+### Technical Documentation
+
+- [Infrastructure](docs/api/INFRASTRUCTURE.md) - AWS architecture details
+- [Lambda Functions](docs/api/LAMBDA_FUNCTIONS.md) - Function documentation
+- [RAG Implementation](docs/api/RAG_IMPLEMENTATION.md) - Vector search details
+- [Monitoring Guide](docs/MONITORING_GUIDE.md) - CloudWatch setup
+
+### Project Planning
+
+- [Success Roadmap](SUCCESS_ROADMAP.md) - Project milestones and goals
+- [Remaining Tasks](docs/REMAINING_TASKS_SUMMARY.md) - Current status
 
 ## 🤝 Contributing
 
