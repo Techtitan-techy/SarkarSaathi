@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 const VoiceInput = ({ onVoiceInput, isListening, setIsListening }) => {
   const [transcript, setTranscript] = useState("");
   const [recognition, setRecognition] = useState(null);
   const [useTextInput, setUseTextInput] = useState(false);
   const [textValue, setTextValue] = useState("");
-  const mediaRecorderRef = useRef(null);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
@@ -346,10 +345,7 @@ const VoiceInput = ({ onVoiceInput, isListening, setIsListening }) => {
             <p style={styles.instructionText}>
               Click the microphone and start speaking
             </p>
-            <p
-              style={styles.instructionText}
-              style={{ fontSize: "0.85rem", color: "#999" }}
-            >
+            <p style={{ fontSize: "0.85rem", color: "#999" }}>
               Note: Voice input requires internet connection
             </p>
           </>
