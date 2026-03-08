@@ -1,9 +1,6 @@
 {
-  "version": 2,
-  "name": "sarkari-saathi",
-  "framework": "create-react-app",
-  "buildCommand": "npm run build",
-  "outputDirectory": "build",
-  "installCommand": "npm install",
-  "rootDirectory": "frontend"
+  "buildCommand": "cd frontend && npm ci && npm run build",
+  "devCommand": "cd frontend && npm start",
+  "installCommand": "cd frontend && npm ci",
+  "outputDirectory": "frontend/build"
 }

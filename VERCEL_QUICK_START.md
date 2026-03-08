@@ -14,17 +14,11 @@
 
 ### Step 3: Configure & Deploy
 
-**IMPORTANT**: Set these settings:
+**IMPORTANT**: Vercel will auto-detect the configuration from `vercel.json`.
 
-```
-Framework Preset: Create React App
-Root Directory: frontend          ← IMPORTANT!
-Build Command: npm run build
-Output Directory: build
-Install Command: npm install
-```
+Just click "Deploy" → Wait 2-3 minutes → Done! 🎉
 
-Click "Deploy" → Wait 2-3 minutes → Done! 🎉
+**Note**: The `vercel.json` file in the root handles all configuration automatically.
 
 ---
 
@@ -66,9 +60,21 @@ Test your deployment:
 
 ## 🆘 Troubleshooting
 
-### Build Fails?
+### Build Fails with "cd: frontend: No such file or directory"?
 
-**Check**: Root Directory is set to `frontend` in Vercel settings
+**Solution**: The `vercel.json` file should handle this automatically. If it still fails:
+
+1. Go to Vercel Dashboard → Project Settings → General
+2. Scroll to "Build & Development Settings"
+3. Click "Override" and set:
+   - **Build Command**: `cd frontend && npm ci && npm run build`
+   - **Output Directory**: `frontend/build`
+   - **Install Command**: `cd frontend && npm ci`
+4. Save and redeploy
+
+### Build Fails with "Could not find index.js"?
+
+**Solution**: This is already fixed. The `frontend/src/index.js` file exists in the repo.
 
 ### 404 Errors?
 
