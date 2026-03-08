@@ -10,9 +10,14 @@ cdk.context.json
 
 # TypeScript
 dist/
-*.js
 *.d.ts
 *.js.map
+
+# Exclude compiled JS from TypeScript, but keep source JS files
+/bin/*.js
+/lib/*.js
+/test/*.js
+!frontend/**/*.js
 
 # IDE
 .vscode/
