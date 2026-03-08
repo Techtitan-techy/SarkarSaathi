@@ -1,6 +1,7 @@
 {
-  "buildCommand": "cd frontend && npm ci && npm run build",
-  "devCommand": "cd frontend && npm start",
-  "installCommand": "cd frontend && npm ci",
-  "outputDirectory": "frontend/build"
+  "installCommand": "npm --prefix frontend install",
+  "buildCommand": "npm --prefix frontend run build",
+  "devCommand": "npm --prefix frontend start",
+  "outputDirectory": "frontend/build",
+  "framework": null
 }
