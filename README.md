@@ -198,12 +198,17 @@ See [PROGRESS.md](./PROGRESS.md) for detailed implementation tracking.
 ### Getting Started
 
 - [Quick Start Guide](README.md#quick-start) - Get up and running quickly
+- [Documentation Index](DOCUMENTATION_INDEX.md) - Complete documentation map
 - [Project Structure](PROJECT_STRUCTURE.md) - Understand the codebase
-- [AWS Translate Migration](docs/AWS_TRANSLATE_MIGRATION.md) - Complete migration guide
+
+### Deployment
+
+- [Vercel Deployment](docs/VERCEL_DEPLOYMENT.md) - Deploy frontend to Vercel (5 minutes) ⚡
+- [AWS Translate Migration](docs/AWS_TRANSLATE_MIGRATION.md) - Complete backend deployment
+- [AWS Complete Setup](docs/setup/AWS_COMPLETE_SETUP_GUIDE.md) - From account creation to deployment
 
 ### Setup Guides
 
-- [AWS Complete Setup](docs/setup/AWS_COMPLETE_SETUP_GUIDE.md) - From account creation to deployment
 - [Amazon Connect Setup](docs/setup/AMAZON_CONNECT_SETUP.md) - IVR configuration
 - [Claude/Bedrock Setup](docs/setup/CLAUDE_SETUP_COMPLETE.md) - AI model configuration
 - [Cost Control](docs/setup/BEDROCK_COST_CONTROL.md) - Optimize AWS costs

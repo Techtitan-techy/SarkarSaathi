@@ -67,6 +67,7 @@
 | File                                                          | Description                            |
 | ------------------------------------------------------------- | -------------------------------------- |
 | [AWS_TRANSLATE_MIGRATION.md](docs/AWS_TRANSLATE_MIGRATION.md) | Complete AWS Translate migration guide |
+| [VERCEL_DEPLOYMENT.md](docs/VERCEL_DEPLOYMENT.md)             | Deploy frontend to Vercel              |
 | [MONITORING_GUIDE.md](docs/MONITORING_GUIDE.md)               | CloudWatch monitoring setup            |
 | [IVR_IMPLEMENTATION.md](docs/IVR_IMPLEMENTATION.md)           | IVR system implementation              |
 | [IVR_QUICK_REFERENCE.md](docs/IVR_QUICK_REFERENCE.md)         | IVR quick reference                    |
